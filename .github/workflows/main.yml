@@ -1,0 +1,41 @@
+name: Knitting wool web scraper
+on:
+  push:
+  pull_request:
+
+jobs:
+  check_code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check code format
+        uses: actions/checkout@v2
+        run: |
+          - python --version
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install -e .
+          - black --check .
+          - flake8 .
+
+      - name: check types
+        uses: actions/checkout@v2
+        run: |
+          - python --version
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install -e .
+          - pwd
+          - mypy .
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        uses: actions/checkout@v2
+        run: |
+          - python --version
+          - python -m venv venv
+          - source venv/bin/activate
+          - pip install -e .
+          - pwd
+          - pytest

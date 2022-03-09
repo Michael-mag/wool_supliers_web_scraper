@@ -1,0 +1,7 @@
+setup.cfg
+setup.py
+markt_pilot_knitting_scraper.egg-info/PKG-INFO
+markt_pilot_knitting_scraper.egg-info/SOURCES.txt
+markt_pilot_knitting_scraper.egg-info/dependency_links.txt
+markt_pilot_knitting_scraper.egg-info/requires.txt
+markt_pilot_knitting_scraper.egg-info/top_level.txt
