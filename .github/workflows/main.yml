@@ -4,39 +4,27 @@ on:
   pull_request:
 
 jobs:
-  check_code_format:
+  code_format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: which python
+      - run: python --version
       - run: |
-          - python --version
-          - python -m venv venv
-          - source venv/bin/activate
-          - pip install -e .
-          - black --check .
-          - flake8 .
+          python -m venv venv
+          source venv/bin/activate
+          pip install black
+          black ./
 
-  check_types:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          - python --version
-          - python -m venv venv
-          - source venv/bin/activate
-          - pip install -e .
-          - pwd
-          - mypy .
+       - uses: actions/checkout@v2
+       - run: which python
+       - run: python --version
+       - run: |
+           python -m venv venv
+           source venv/bin/activate
+           pip install -e .
+           pytest
 
-  run_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: test
-      - uses: actions/checkout@v2
-      - run: |
-          - python --version
-          - python -m venv venv
-          - source venv/bin/activate
-          - pip install -e .
-          - pwd
-          - pytest
