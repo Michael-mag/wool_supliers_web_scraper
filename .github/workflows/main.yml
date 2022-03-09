@@ -4,10 +4,9 @@ on:
   pull_request:
 
 jobs:
-  check_code:
+  check_code_format:
     runs-on: ubuntu-latest
     steps:
-      - name: check code format
       - uses: actions/checkout@v2
       - run: |
           - python --version
@@ -17,7 +16,9 @@ jobs:
           - black --check .
           - flake8 .
 
-      - name: check types
+  check_types:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
       - run: |
           - python --version
@@ -27,7 +28,7 @@ jobs:
           - pwd
           - mypy .
 
-  test:
+  run_tests:
     runs-on: ubuntu-latest
     steps:
       - name: test
